@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="library_rest_spring_boot.library.resources.author.AuthorServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-16T17:03:32" hostname="hendryl-ubuntu" time="1.101">
+  <properties/>
+  <testcase name="testFindAll()" classname="library_rest_spring_boot.library.resources.author.AuthorServiceTest" time="1.101"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

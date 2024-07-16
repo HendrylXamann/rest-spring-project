@@ -23,8 +23,19 @@ dependencies {
 	implementation("org.flywaydb:flyway-core")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test"){
+		exclude(group = "org.mockito", module = "mockito-core")
+	}
+	testImplementation("org.mockito:mockito-core:4.3.1")
+	testImplementation("org.mockito:mockito-junit-jupiter:4.0.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation("javax.persistence:javax.persistence-api:2.2")
+}
+
+tasks.withType<JavaExec> {
+	environment("POSTGRES_USER", System.getenv("POSTGRES_USER") ?: "postgres")
+	environment("POSTGRES_PASSWORD", System.getenv("POSTGRES_PASSWORD") ?: "postgres123")
+	environment("POSTGRES_DB", System.getenv("POSTGRES_DB") ?: "librarydb")
 }
 
 tasks.withType<Test> {
