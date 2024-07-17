@@ -1,7 +1,6 @@
 package library_rest_spring_boot.library.resources.books;
 import library_rest_spring_boot.library.domain.entity.Books;
 import library_rest_spring_boot.library.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookResource {
 
-    @Autowired
     private BookService bookService;
 
     @GetMapping
