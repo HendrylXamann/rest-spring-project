@@ -30,6 +30,8 @@ dependencies {
 	testImplementation("org.mockito:mockito-junit-jupiter:4.0.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("javax.persistence:javax.persistence-api:2.2")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.3")
+
 }
 
 tasks.withType<JavaExec> {
