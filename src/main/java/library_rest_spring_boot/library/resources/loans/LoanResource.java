@@ -1,7 +1,6 @@
 package library_rest_spring_boot.library.resources.loans;
 import library_rest_spring_boot.library.domain.entity.Loans;
 import library_rest_spring_boot.library.service.LoanService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Optional;
 @RequestMapping("/api/loans")
 public class LoanResource {
 
-    @Autowired
     private LoanService loanService;
 
     @GetMapping
