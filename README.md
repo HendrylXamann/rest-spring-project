@@ -59,8 +59,7 @@ rest-spring-project
 └── settings.gradle.kts
 
 ## passos:
-- Validar endpoints RESTful para gerenciar Author, Book e Loan.
-- Testar os endpoints com Bruno
+- Fazer tests dos books e loans
+- Fazer funcionar 
 - Configurar o Swagger para documentar a API.
-- Escrever testes unitários
 - Configurar o Docker para contêinerizar a aplicação e bd
