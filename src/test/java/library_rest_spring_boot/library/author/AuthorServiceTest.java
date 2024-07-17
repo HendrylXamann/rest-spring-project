@@ -1,4 +1,4 @@
-package library_rest_spring_boot.library.resources.author;
+package library_rest_spring_boot.library.author;
 import library_rest_spring_boot.library.service.AuthorService;
 import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.repositories.AuthorRepository;

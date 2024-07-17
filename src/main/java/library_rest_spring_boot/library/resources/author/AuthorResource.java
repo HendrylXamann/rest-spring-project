@@ -21,8 +21,10 @@ public class AuthorResource {
             @ApiResponse(description = "Successful Operation", responseCode = "200", content = @Content(schema = @Schema(implementation = Author.class)))
     })
     @GetMapping
-    public List<Author> getAllAuthors() {
-        return authorService.findAll();
+    public ResponseEntity<List<Author>> getAllAuthors() {
+        List<Author> authors = authorService.findAll();
+        return ResponseEntity.ok(authors);
+
     }
 
     @Operation(summary = "Get an author by ID", responses = {
