@@ -1,14 +1,12 @@
 package library_rest_spring_boot.library.service;
-import library_rest_spring_boot.library.domain.entity.Books;
-import library_rest_spring_boot.library.repositories.BookRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Component;
+import library_rest_spring_boot.library.domain.entity.Books;
+import library_rest_spring_boot.library.repositories.BookRepository;
 
 @Component
 public class BookService {
-
     private BookRepository bookRepository;
 
     public List<Books> findAll() {

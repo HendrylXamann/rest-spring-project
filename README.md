@@ -20,11 +20,11 @@ rest-spring-project
 │   │   │                └── LoansRepository
 │   │   │       └── resources
 │   │   │                └── author
-│   │   │                            └── AuthorResource
+│   │   │                        └── AuthorResource
 │   │   │                └── books
-│   │   │                            └── BookResource
+│   │   │                        └── BookResource
 │   │   │                └── loans
-│   │   │                            └── LoanResource
+│   │   │                        └── LoanResource
 │   │   │       └── service
 │   │   │                └── AuthorService
 │   │   │                └── BookService
@@ -40,16 +40,16 @@ rest-spring-project
 │       └── java
 │             └── library_rest_spring_boot.library
 │                    └── LibraryApplicationTests
-│                           └── resources
-│                                └── author
-│                                      └── AuthorResourceTest
-│                                └── books
-│                                      └── BookResourceTest
-│                                └── loans
-│                                      └── LoanResourceTest
-│                           └── LibraryApplicationTests
+│                           └── author
+│                                └── AuthorResourceTest
+│                                └── AuthorServiceTest
+│                           └── book
+│                                └── BookResourceTest
+│                                └── BookServiceTest
+│                           └── loans
+│                                └── LoanResourceTest
+│                                └── LoanServiceTest
 │                    └── resources
-│                           └── application-test.properties
 ├── README.md
 ├── docker-compose.yml
 ├── local_environ.env
@@ -59,7 +59,6 @@ rest-spring-project
 └── settings.gradle.kts
 
 ## passos:
-- Fazer tests dos books e loans
 - Fazer funcionar 
 - Configurar o Swagger para documentar a API.
 - Configurar o Docker para contêinerizar a aplicação e bd
