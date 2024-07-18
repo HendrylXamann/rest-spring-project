@@ -59,6 +59,8 @@ rest-spring-project
 └── settings.gradle.kts
 
 ## passos:
-- Fazer funcionar 
-- Configurar o Swagger para documentar a API.
+- ADD Pacotes de Validações e Exceções
+- DTOs e Mappers:Para separar as entidades do domínio dos dados que são expostos pela API, considere usar DTOs (Data Transfer Objects). Crie um pacote dto e mapeie as entidades para DTOs dentro dos recursos ou use mappers dedicados.
+- como testar migrações (flyway)
+
 - Configurar o Docker para contêinerizar a aplicação e bd
