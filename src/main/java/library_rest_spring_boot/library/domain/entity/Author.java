@@ -1,5 +1,7 @@
 package library_rest_spring_boot.library.domain.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -9,8 +11,11 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
     private Long id;
+    @NotBlank(message = "Name is mandatory")
     private String name;
+    @NotNull(message = "Birth date is mandatory")
     private Date birthDate;
+    @NotBlank(message = "Nationality is mandatory")
     private String nationality;
 
     public Author() {

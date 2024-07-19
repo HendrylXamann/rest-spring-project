@@ -1,5 +1,7 @@
 package library_rest_spring_boot.library.domain.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -9,9 +11,13 @@ public class Books {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
     private Long id;
+    @NotBlank(message = "Title is mandatory")
     private String title;
+    @NotBlank(message = "ISBN is mandatory")
     private String isbn;
+    @NotNull(message = "Publication date is mandatory")
     private Date publicationDate;
+    @NotNull(message = "Number of pages is mandatory")
     private int numberOfPages;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

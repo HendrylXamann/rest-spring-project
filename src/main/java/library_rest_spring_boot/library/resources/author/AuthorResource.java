@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.service.AuthorService;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +53,7 @@ public class AuthorResource {
     )
 
     @PostMapping
-    public Author createAuthor(@RequestBody Author author) {
+    public Author createAuthor(@Valid @RequestBody Author author) {
         return authorService.save(author);
     }
 

@@ -1,5 +1,6 @@
 package library_rest_spring_boot.library.resources.books;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.domain.entity.Books;
 import library_rest_spring_boot.library.service.AuthorService;
@@ -45,7 +46,7 @@ public class BookResource {
     @Operation(summary = "Create a new book")
     @ApiResponse(responseCode = "200", description = "Book created", content = @Content(schema = @Schema(implementation = Books.class)))
     @PostMapping
-    public Books createBook(@RequestBody Books books) {
+    public Books createBook(@Valid @RequestBody Books books) {
         Author author = books.getAuthor();
         if (author != null) {
             if (author.getId() != null && !authorService.existsById(author.getId())) {
