@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="library_rest_spring_boot.library.loans.LoanResourceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-07-19T20:01:00" hostname="hendryl-ubuntu" time="1.535">
+  <properties/>
+  <testcase name="testUpdateLoanFound()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="1.272"/>
+  <testcase name="testGetAllLoans()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.093"/>
+  <testcase name="testGetLoanByIdNotFound()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.039"/>
+  <testcase name="testUpdateLoanNotFound()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.034"/>
+  <testcase name="testGetLoanByIdFound()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.033"/>
+  <testcase name="testCreateLoan()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.034"/>
+  <testcase name="testDeleteLoan()" classname="library_rest_spring_boot.library.loans.LoanResourceTest" time="0.023"/>
+  <system-out><![CDATA[17:01:01.872 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:01.877 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:01.884 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 4 ms
+17:01:02.230 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.230 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.231 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 1 ms
+17:01:02.329 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.330 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.331 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+17:01:02.363 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.363 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.363 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+17:01:02.399 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.400 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.402 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 2 ms
+17:01:02.431 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.431 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.432 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 1 ms
+17:01:02.460 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+17:01:02.461 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+17:01:02.462 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

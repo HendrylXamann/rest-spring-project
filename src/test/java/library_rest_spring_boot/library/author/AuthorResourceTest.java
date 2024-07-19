@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import library_rest_spring_boot.library.domain.entity.Author;
+import library_rest_spring_boot.library.domain.entity.author.Author;
 import library_rest_spring_boot.library.service.AuthorService;
 import library_rest_spring_boot.library.resources.author.AuthorResource;
 

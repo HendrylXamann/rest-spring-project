@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="library_rest_spring_boot.library.loans.LoanServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-07-19T20:01:02" hostname="hendryl-ubuntu" time="0.099">
+  <properties/>
+  <testcase name="testFindAll()" classname="library_rest_spring_boot.library.loans.LoanServiceTest" time="0.081"/>
+  <testcase name="testSave()" classname="library_rest_spring_boot.library.loans.LoanServiceTest" time="0.003"/>
+  <testcase name="testFindById_Found()" classname="library_rest_spring_boot.library.loans.LoanServiceTest" time="0.002"/>
+  <testcase name="testDeleteById()" classname="library_rest_spring_boot.library.loans.LoanServiceTest" time="0.002"/>
+  <testcase name="testFindById_NotFound()" classname="library_rest_spring_boot.library.loans.LoanServiceTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

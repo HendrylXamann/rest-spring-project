@@ -1,14 +1,16 @@
 package library_rest_spring_boot.library.service;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Component;
-import library_rest_spring_boot.library.domain.entity.Author;
+
+import library_rest_spring_boot.library.domain.entity.author.Author;
 import library_rest_spring_boot.library.repositories.AuthorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorService {
     private final AuthorRepository authorRepository;
+    @Autowired
     public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }

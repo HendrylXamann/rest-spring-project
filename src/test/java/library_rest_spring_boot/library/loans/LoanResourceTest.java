@@ -5,21 +5,32 @@ import java.util.Arrays;
 import java.util.Optional;
 import org.mockito.InjectMocks;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
-import library_rest_spring_boot.library.domain.entity.Loans;
+import library_rest_spring_boot.library.domain.entity.loans.Loans;
 import library_rest_spring_boot.library.service.LoanService;
 import library_rest_spring_boot.library.resources.loans.LoanResource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ExtendWith(MockitoExtension.class)
 public class LoanResourceTest {
+
+    private MockMvc mockMvc;
 
     @Mock
     private LoanService loanService;
@@ -28,82 +39,80 @@ public class LoanResourceTest {
     private LoanResource loanResource;
 
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void setup() {
+        mockMvc = MockMvcBuilders.standaloneSetup(loanResource).build();
     }
 
     @Test
-    public void testGetAllLoans() {
+    public void testGetAllLoans() throws Exception {
         Loans loan1 = new Loans();
         Loans loan2 = new Loans();
-        when(loanService.findAll()).thenReturn(Arrays.asList(loan1, loan2));
-        List<Loans> result = loanResource.getAllLoans();
+        given(loanService.findAll()).willReturn(Arrays.asList(loan1, loan2));
 
-        assertEquals(2, result.size());
-        verify(loanService, times(1)).findAll();
+        mockMvc.perform(get("/api/loans")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(2));
     }
 
     @Test
-    public void testGetLoanById_Found() {
+    public void testGetLoanByIdFound() throws Exception {
         Loans loan = new Loans();
-        when(loanService.findById(1L)).thenReturn(Optional.of(loan));
-        ResponseEntity<Loans> response = loanResource.getLoanById(1L);
+        given(loanService.findById(1L)).willReturn(Optional.of(loan));
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(loan, response.getBody());
-        verify(loanService, times(1)).findById(1L);
+        mockMvc.perform(get("/api/loans/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void testGetLoanById_NotFound() {
-        when(loanService.findById(1L)).thenReturn(Optional.empty());
-        ResponseEntity<Loans> response = loanResource.getLoanById(1L);
+    public void testGetLoanByIdNotFound() throws Exception {
+        given(loanService.findById(1L)).willReturn(Optional.empty());
 
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(loanService, times(1)).findById(1L);
+        mockMvc.perform(get("/api/loans/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testCreateLoan() {
+    public void testCreateLoan() throws Exception {
         Loans loan = new Loans();
-        when(loanService.save(any(Loans.class))).thenReturn(loan);
-        Loans result = loanResource.createLoan(loan);
+        given(loanService.save(any(Loans.class))).willReturn(loan);
 
-        assertEquals(loan, result);
-        verify(loanService, times(1)).save(loan);
+        mockMvc.perform(post("/api/loans")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void testUpdateLoan_Found() {
-        Loans existingLoan = new Loans();
-        Loans updatedLoan = new Loans();
-        when(loanService.findById(1L)).thenReturn(Optional.of(existingLoan));
-        when(loanService.save(any(Loans.class))).thenReturn(updatedLoan);
-        ResponseEntity<Loans> response = loanResource.updateLoan(1L, updatedLoan);
+    public void testUpdateLoanFound() throws Exception {
+        Loans existingLoan = new Loans(); // Configure existingLoan with test data
+        given(loanService.findById(1L)).willReturn(Optional.of(existingLoan));
+        given(loanService.save(any(Loans.class))).willReturn(existingLoan);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(updatedLoan, response.getBody());
-        verify(loanService, times(1)).findById(1L);
-        verify(loanService, times(1)).save(existingLoan);
+        mockMvc.perform(put("/api/loans/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void testUpdateLoan_NotFound() {
-        Loans updatedLoan = new Loans();
-        when(loanService.findById(1L)).thenReturn(Optional.empty());
-        ResponseEntity<Loans> response = loanResource.updateLoan(1L, updatedLoan);
+    public void testUpdateLoanNotFound() throws Exception {
+        given(loanService.findById(1L)).willReturn(Optional.empty());
 
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(loanService, times(1)).findById(1L);
-        verify(loanService, never()).save(any(Loans.class));
+        mockMvc.perform(put("/api/loans/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testDeleteLoan() {
+    public void testDeleteLoan() throws Exception {
         doNothing().when(loanService).deleteById(1L);
-        ResponseEntity<Void> response = loanResource.deleteLoan(1L);
 
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        verify(loanService, times(1)).deleteById(1L);
+        mockMvc.perform(delete("/api/loans/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
     }
 }

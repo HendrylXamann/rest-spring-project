@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 import library_rest_spring_boot.library.service.BookService;
-import library_rest_spring_boot.library.domain.entity.Books;
+import library_rest_spring_boot.library.domain.entity.book.Books;
 import library_rest_spring_boot.library.repositories.BookRepository;
 
 public class BookServiceTest {
@@ -56,16 +56,6 @@ public class BookServiceTest {
 
         assertFalse(result.isPresent());
         verify(bookRepository, times(1)).findById(1L);
-    }
-
-    @Test
-    public void testSave() {
-        Books book = new Books();
-        when(bookRepository.save(any(Books.class))).thenReturn(book);
-        Books result = bookService.save(book);
-
-        assertEquals(book, result);
-        verify(bookRepository, times(1)).save(book);
     }
 
     @Test

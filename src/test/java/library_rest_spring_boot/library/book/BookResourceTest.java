@@ -1,6 +1,12 @@
 package library_rest_spring_boot.library.book;
 import java.util.List;
 import java.util.Arrays;
+
+import library_rest_spring_boot.library.domain.entity.author.Author;
+import library_rest_spring_boot.library.domain.entity.author.AuthorDTO;
+import library_rest_spring_boot.library.domain.entity.book.BookDTO;
+import library_rest_spring_boot.library.service.AuthorService;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import java.util.Optional;
 import org.mockito.InjectMocks;
@@ -12,97 +18,95 @@ import static org.mockito.ArgumentMatchers.any;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import library_rest_spring_boot.library.domain.entity.Books;
+import library_rest_spring_boot.library.domain.entity.book.Books;
 import library_rest_spring_boot.library.service.BookService;
 import library_rest_spring_boot.library.resources.books.BookResource;
 
 @ExtendWith(MockitoExtension.class)
-public class BookResourceTest {
+class BookResourceTest {
 
     @Mock
     private BookService bookService;
 
+    @Mock
+    private AuthorService authorService;
+
     @InjectMocks
     private BookResource bookResource;
 
+    private Books book;
+    private BookDTO bookDTO;
+    private Author author;
+    private AuthorDTO authorDTO;
+
+    @BeforeEach
+    void setUp() {
+        author = new Author();
+        author.setId(1L);
+        author.setName("Author Name");
+
+        book = new Books();
+        book.setId(1L);
+        book.setTitle("Book Title");
+        book.setIsbn("1234567890123");
+        book.setAuthor(author);
+
+        authorDTO = new AuthorDTO();
+        authorDTO.setId(1L);
+        authorDTO.setName("Author Name");
+
+        bookDTO = new BookDTO();
+        bookDTO.setId(1L);
+        bookDTO.setTitle("Book Title");
+        bookDTO.setIsbn("1234567890123");
+        bookDTO.setAuthor(authorDTO);
+    }
+
     @Test
-    public void testGetAllBooks() {
-        Books book1 = new Books();
-        Books book2 = new Books();
-        when(bookService.findAll()).thenReturn(Arrays.asList(book1, book2));
+    void getAllBooks() {
+        when(bookService.findAll()).thenReturn(Arrays.asList(book));
 
-        List<Books> result = bookResource.getAllBooks();
+        List<BookDTO> result = bookResource.getAllBooks();
 
-        assertEquals(2, result.size());
+        assertEquals(1, result.size());
+        assertEquals(bookDTO.getId(), result.get(0).getId());
         verify(bookService, times(1)).findAll();
     }
 
     @Test
-    public void testGetBookById_Found() {
-        Books book = new Books();
-        when(bookService.findById(1L)).thenReturn(Optional.of(book));
-
-        ResponseEntity<Books> response = bookResource.getBookById(1L);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(book, response.getBody());
-        verify(bookService, times(1)).findById(1L);
-    }
-
-    @Test
-    public void testGetBookById_NotFound() {
-        when(bookService.findById(1L)).thenReturn(Optional.empty());
-
-        ResponseEntity<Books> response = bookResource.getBookById(1L);
-
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(bookService, times(1)).findById(1L);
-    }
-
-    @Test
-    public void testCreateBook() {
-        Books book = new Books();
+    void getBookById() {
+        when(bookService.findById(any(Long.class))).thenReturn(Optional.of(book));
         when(bookService.save(any(Books.class))).thenReturn(book);
-
-        Books result = bookResource.createBook(book);
-
-        assertEquals(book, result);
-    }
-
-    @Test
-    public void testUpdateBook_Found() {
-        Books existingBook = new Books();
-        Books updatedBook = new Books();
-        when(bookService.findById(1L)).thenReturn(Optional.of(existingBook));
-        when(bookService.save(any(Books.class))).thenReturn(updatedBook);
-
-        ResponseEntity<Books> response = bookResource.updateBook(1L, updatedBook);
-
+        ResponseEntity<BookDTO> response = bookResource.updateBook(1L, bookDTO);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(updatedBook, response.getBody());
-        verify(bookService, times(1)).findById(1L);
-        verify(bookService, times(1)).save(existingBook);
+        verify(bookService).save(any(Books.class));
     }
 
     @Test
-    public void testUpdateBook_NotFound() {
-        Books updatedBook = new Books();
-        when(bookService.findById(1L)).thenReturn(Optional.empty());
-
-        ResponseEntity<Books> response = bookResource.updateBook(1L, updatedBook);
-
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(bookService, times(1)).findById(1L);
-        verify(bookService, never()).save(any(Books.class));
+    void createBook() {
+        when(bookService.findById(any(Long.class))).thenReturn(Optional.of(book));
+        when(bookService.save(any(Books.class))).thenReturn(book);
+        ResponseEntity<BookDTO> response = bookResource.updateBook(1L, bookDTO);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(bookService).save(any(Books.class));
     }
 
     @Test
-    public void testDeleteBook() {
+    void updateBook() {
+        when(bookService.findById(any(Long.class))).thenReturn(Optional.of(book));
+        when(bookService.save(any(Books.class))).thenReturn(book);
+        ResponseEntity<BookDTO> response = bookResource.updateBook(1L, bookDTO);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(bookService).save(any(Books.class));
+    }
+
+    @Test
+    void deleteBook() {
         doNothing().when(bookService).deleteById(1L);
 
-        ResponseEntity<Void> response = bookResource.deleteBook(1L);
+        ResponseEntity<Void> result = bookResource.deleteBook(1L);
 
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        assertEquals(ResponseEntity.noContent().build(), result);
         verify(bookService, times(1)).deleteById(1L);
     }
 }

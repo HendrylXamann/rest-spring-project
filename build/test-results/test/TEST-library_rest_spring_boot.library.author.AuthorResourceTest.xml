@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="library_rest_spring_boot.library.author.AuthorResourceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-07-19T20:01:00" hostname="hendryl-ubuntu" time="0.12">
+  <properties/>
+  <testcase name="testUpdateAuthor_Found()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.067"/>
+  <testcase name="testGetAllAuthors()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.007"/>
+  <testcase name="testGetAuthorById_Found()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.007"/>
+  <testcase name="testDeleteAuthor()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.005"/>
+  <testcase name="testGetAuthorById_NotFound()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.008"/>
+  <testcase name="testCreateAuthor()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.004"/>
+  <testcase name="testUpdateAuthor_NotFound()" classname="library_rest_spring_boot.library.author.AuthorResourceTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

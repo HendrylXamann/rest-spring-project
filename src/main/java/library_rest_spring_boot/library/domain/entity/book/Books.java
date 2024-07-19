@@ -1,8 +1,9 @@
-package library_rest_spring_boot.library.domain.entity;
+package library_rest_spring_boot.library.domain.entity.book;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
+import library_rest_spring_boot.library.domain.entity.author.Author;
 import java.util.Date;
 
 @Entity
