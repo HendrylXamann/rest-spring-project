@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.service.AuthorService;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "1. Authors", description = "Operations related to authors")
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorResource {
 
-    private AuthorService authorService;
+    private final AuthorService authorService;
+
+    public AuthorResource(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @Operation(summary = "Get all authors", responses = {
             @ApiResponse(description = "Successful Operation", responseCode = "200", content = @Content(schema = @Schema(implementation = Author.class)))

@@ -4,10 +4,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.repositories.AuthorRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class AuthorService {
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     public List<Author> findAll() {
         return authorRepository.findAll();
@@ -23,5 +27,9 @@ public class AuthorService {
 
     public void deleteById(Long id) {
         authorRepository.deleteById(id);
+    }
+
+    public boolean existsById(Long id) {
+        return authorRepository.existsById(id);
     }
 }

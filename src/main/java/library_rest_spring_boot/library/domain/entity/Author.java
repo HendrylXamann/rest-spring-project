@@ -1,13 +1,14 @@
 package library_rest_spring_boot.library.domain.entity;
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
     private Long id;
-
     private String name;
     private Date birthDate;
     private String nationality;
@@ -19,6 +20,10 @@ public class Author {
         this.name = name;
         this.birthDate = birthDate;
         this.nationality = nationality;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

@@ -1,5 +1,8 @@
 package library_rest_spring_boot.library.resources.books;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import library_rest_spring_boot.library.domain.entity.Author;
 import library_rest_spring_boot.library.domain.entity.Books;
+import library_rest_spring_boot.library.service.AuthorService;
 import library_rest_spring_boot.library.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +13,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+@Tag(name = "2. Books", description = "Operations related to books")
 @RestController
 @RequestMapping("/api/books")
 public class BookResource {
 
-    private BookService bookService;
+    private final BookService bookService;
+    private final AuthorService authorService;
+
+    public BookResource(BookService bookService, AuthorService authorService) {
+        this.bookService = bookService;
+        this.authorService = authorService;
+    }
 
     @Operation(summary = "Get all books")
     @ApiResponse(responseCode = "200", description = "Successful operation")
@@ -36,6 +46,15 @@ public class BookResource {
     @ApiResponse(responseCode = "200", description = "Book created", content = @Content(schema = @Schema(implementation = Books.class)))
     @PostMapping
     public Books createBook(@RequestBody Books books) {
+        Author author = books.getAuthor();
+        if (author != null) {
+            if (author.getId() != null && !authorService.existsById(author.getId())) {
+                throw new IllegalArgumentException("Author does not exist.");
+            } else if (author.getId() == null) {
+                author = authorService.save(author);
+                books.setAuthor(author);
+            }
+        }
         return bookService.save(books);
     }
 
