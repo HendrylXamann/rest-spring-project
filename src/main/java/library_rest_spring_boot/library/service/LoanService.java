@@ -1,14 +1,17 @@
 package library_rest_spring_boot.library.service;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Component;
 import library_rest_spring_boot.library.domain.entity.Loans;
 import library_rest_spring_boot.library.repositories.LoansRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class LoanService {
-    private LoansRepository loansRepository;
+    private final LoansRepository loansRepository;
 
+    public LoanService(LoansRepository loansRepository) {
+        this.loansRepository = loansRepository;
+    }
     public List<Loans> findAll() {
         return loansRepository.findAll();
     }

@@ -33,8 +33,6 @@ rest-spring-project
 │   │   └── resources
 │   │       ├── db.migration
 │   │       │       └── V1__create_tables.sql
-│   │       └── static
-│   │       └── templates
 │   │       └── application.properties
 │   └── test
 │       └── java
