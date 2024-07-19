@@ -1,4 +1,4 @@
-package library_rest_spring_boot.library.domain.entity;
+package library_rest_spring_boot.library.domain.entity.author;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,10 @@ public class Author {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -54,7 +59,7 @@ public class Author {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
-// só validar se o nome não for nulo | ver se é necessario isso
+
     public boolean isValid() {
         return name != null;
     }
