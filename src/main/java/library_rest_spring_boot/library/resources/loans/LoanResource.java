@@ -1,6 +1,6 @@
 package library_rest_spring_boot.library.resources.loans;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import library_rest_spring_boot.library.domain.entity.Loans;
+import library_rest_spring_boot.library.domain.entity.loans.Loans;
 import library_rest_spring_boot.library.service.LoanService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,10 @@
-package library_rest_spring_boot.library.domain.entity;
+package library_rest_spring_boot.library.domain.entity.loans;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
+import library_rest_spring_boot.library.domain.entity.book.Books;
+
 import java.util.Date;
 
 @Entity

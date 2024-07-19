@@ -1,7 +1,7 @@
 package library_rest_spring_boot.library.service;
 import java.util.List;
 import java.util.Optional;
-import library_rest_spring_boot.library.domain.entity.Loans;
+import library_rest_spring_boot.library.domain.entity.loans.Loans;
 import library_rest_spring_boot.library.repositories.LoansRepository;
 import org.springframework.stereotype.Service;
 
