@@ -1,70 +1,36 @@
-# TDD_spring
-rest-spring-project
-├── gradle
-│   └── wrapper
-│       ├── gradle-wrapper.jar
-│       └── gradle-wrapper.properties
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── library_rest_spring_boot.library
-│   │   │       └── config
-│   │   │       └── domain
-│   │   │                └── entity
-│   │   │                         └── Author
-│   │   │                                   └── Author.java
-│   │   │                                   └── DtoAuthor.java
-│   │   │                         └── Books
-│   │   │                                  └── Books.java
-│   │   │                                  └── DtoBook.java
-│   │   │                         └── Loans
-│   │   │                                    └── Loans.java
-│   │   │                                    └── DtoLoans.java
-│   │   │       └── repositories
-│   │   │                └── AuthorRepository
-│   │   │                └── BookRepository
-│   │   │                └── LoansRepository
-│   │   │       └── resources
-│   │   │                └── author
-│   │   │                        └── AuthorResource
-│   │   │                └── books
-│   │   │                        └── BookResource
-│   │   │                └── loans
-│   │   │                        └── LoanResource
-│   │   │       └── service
-│   │   │                └── AuthorService
-│   │   │                └── BookService
-│   │   │                └── LoanService
-│   │   │       └── LibraryApplication
-│   │   └── resources
-│   │       ├── db.migration
-│   │       │       └── V1__create_tables.sql
-│   │       └── application.properties
-│   └── test
-│       └── java
-│             └── library_rest_spring_boot.library
-│                    └── LibraryApplicationTests
-│                           └── author
-│                                └── AuthorResourceTest
-│                                └── AuthorServiceTest
-│                           └── book
-│                                └── BookResourceTest
-│                                └── BookServiceTest
-│                           └── loans
-│                                └── LoanResourceTest
-│                                └── LoanServiceTest
-│                    └── resources
-├── README.md
-├── docker-compose.yml
-├── local_environ.env
-├── build.gradle.kts
-├──gradlew
-├──gradlew.bat
-└── settings.gradle.kts
+# Spring Boot Library Management Project
 
-## passos:
-- ADD Pacotes de Validações e Exceções
-- Criar DTO e mapeamento pros endpoints
-- Como testar migrações (flyway)
+## Project Description
 
-- Configurar o Docker para contêinerizar a aplicação e bd
+This project has two main purposes:
+1. To study and deepen knowledge about backend development using Spring Boot.
+2. To serve as a challenge to migrate the technological stack internally within my company.
+
+## Objectives
+
+- **Learning**: To learn and apply best practices in backend development with Spring Boot, including testing, API documentation, and database migrations.
+- **Professional Challenge**: To demonstrate skills and knowledge to facilitate the transition to a new technological stack within the company.
+
+## Features
+
+- Management of books, authors, and library loans.
+- Control of book loans.
+- Implementation of relationships between entities.
+- Data validation and sanitization.
+
+## Technologies Used
+
+- **Java 17**
+- **Spring Boot**
+    - Spring Data JPA
+    - Spring Web
+- **PostgreSQL**
+- **Docker**
+- **Flyway** (Database Migrations)
+- **Mockito** (For unit tests)
+- **Swagger** (API Documentation)
+
+
+
+
+
