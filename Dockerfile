@@ -4,9 +4,6 @@ COPY --chown=gradle:gradle . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
-ENV JAVA_HOME /opt/java/openjdk
-RUN export JAVA_HOME
-
 RUN gradle build -x test
 
 FROM eclipse-temurin:17-jre-alpine
