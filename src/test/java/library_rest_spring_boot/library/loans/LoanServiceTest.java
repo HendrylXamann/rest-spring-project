@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 import library_rest_spring_boot.library.domain.entity.loans.Loans;
-import library_rest_spring_boot.library.service.LoanService;
+import library_rest_spring_boot.library.service.loan.LoanService;
 import library_rest_spring_boot.library.repositories.LoansRepository;
 
 public class LoanServiceTest {

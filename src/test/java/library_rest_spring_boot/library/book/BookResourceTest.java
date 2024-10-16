@@ -5,7 +5,7 @@ import java.util.Arrays;
 import library_rest_spring_boot.library.domain.entity.author.Author;
 import library_rest_spring_boot.library.domain.entity.author.AuthorDTO;
 import library_rest_spring_boot.library.domain.entity.book.BookDTO;
-import library_rest_spring_boot.library.service.AuthorService;
+import library_rest_spring_boot.library.service.author.AuthorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import java.util.Optional;
@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import library_rest_spring_boot.library.domain.entity.book.Books;
-import library_rest_spring_boot.library.service.BookService;
+import library_rest_spring_boot.library.service.book.BookService;
 import library_rest_spring_boot.library.resources.books.BookResource;
 
 @ExtendWith(MockitoExtension.class)

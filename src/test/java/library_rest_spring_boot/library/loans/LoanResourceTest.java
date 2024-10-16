@@ -1,5 +1,4 @@
 package library_rest_spring_boot.library.loans;
-import java.util.List;
 import org.mockito.Mock;
 import java.util.Arrays;
 import java.util.Optional;
@@ -8,13 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+
 import static org.mockito.ArgumentMatchers.any;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import library_rest_spring_boot.library.domain.entity.loans.Loans;
-import library_rest_spring_boot.library.service.LoanService;
+import library_rest_spring_boot.library.service.loan.LoanService;
 import library_rest_spring_boot.library.resources.loans.LoanResource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;

@@ -5,8 +5,9 @@ import library_rest_spring_boot.library.domain.entity.author.Author;
 import library_rest_spring_boot.library.domain.entity.author.AuthorDTO;
 import library_rest_spring_boot.library.domain.entity.book.BookDTO;
 import library_rest_spring_boot.library.domain.entity.book.Books;
-import library_rest_spring_boot.library.service.AuthorService;
-import library_rest_spring_boot.library.service.BookService;
+import library_rest_spring_boot.library.service.author.AuthorService;
+import library_rest_spring_boot.library.service.book.BookService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -21,15 +22,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Tag(name = "2. Books", description = "Operations related to books")
 @RestController
 @RequestMapping("/api/books")
+@AllArgsConstructor
 public class BookResource {
 
     private final BookService bookService;
     private final AuthorService authorService;
-
-    public BookResource(BookService bookService, AuthorService authorService) {
-        this.bookService = bookService;
-        this.authorService = authorService;
-    }
 
     @Operation(summary = "Get all books")
     @ApiResponse(responseCode = "200", description = "Successful operation")
@@ -39,6 +36,7 @@ public class BookResource {
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
+
     @Operation(summary = "Get a book by ID")
     @ApiResponse(responseCode = "200", description = "Book found", content = @Content(schema = @Schema(implementation = Books.class)))
     @ApiResponse(responseCode = "404", description = "Book not found")

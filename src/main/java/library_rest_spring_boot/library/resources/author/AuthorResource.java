@@ -7,22 +7,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import library_rest_spring_boot.library.domain.entity.author.Author;
-import library_rest_spring_boot.library.service.AuthorService;
+import library_rest_spring_boot.library.service.author.AuthorService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Tag(name = "1. Authors", description = "Operations related to authors")
 @RestController
 @RequestMapping("/api/authors")
+@AllArgsConstructor
 public class AuthorResource {
-
     private final AuthorService authorService;
-
-    public AuthorResource(AuthorService authorService) {
-        this.authorService = authorService;
-    }
 
     @Operation(summary = "Get all authors", responses = {
             @ApiResponse(description = "Successful Operation", responseCode = "200", content = @Content(schema = @Schema(implementation = Author.class)))
@@ -31,7 +30,6 @@ public class AuthorResource {
     public ResponseEntity<List<Author>> getAllAuthors() {
         List<Author> authors = authorService.findAll();
         return ResponseEntity.ok(authors);
-
     }
 
     @Operation(summary = "Get an author by ID", responses = {
@@ -51,7 +49,6 @@ public class AuthorResource {
             @ApiResponse(description = "Author created", responseCode = "200", content = @Content(schema = @Schema(implementation = Author.class)))
     }, requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Author to be created", required = true, content = @Content(schema = @Schema(implementation = Author.class)))
     )
-
     @PostMapping
     public Author createAuthor(@Valid @RequestBody Author author) {
         return authorService.save(author);
@@ -64,15 +61,12 @@ public class AuthorResource {
             @Parameter(name = "id", description = "Author ID")
     }, requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Updated author details", required = true, content = @Content(schema = @Schema(implementation = Author.class)))
     )
-
     @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author authorDetails) {
-        Optional<Author> author = authorService.findById(id);
-        if (author.isPresent()) {
-            Author updatedAuthor = author.get();
-            updatedAuthor.setName(authorDetails.getName());
-            return ResponseEntity.ok(authorService.save(updatedAuthor));
-        } else {
+    public ResponseEntity<Author> updateAuthor(@RequestBody Author authorDetails) {
+        try {
+            Author updatedAuthor = authorService.updateAuthor(authorDetails);
+            return ResponseEntity.ok(updatedAuthor);
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -83,10 +77,13 @@ public class AuthorResource {
     }, parameters = {
             @Parameter(name = "id", description = "Author ID")
     })
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
-        authorService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        try {
+            authorService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

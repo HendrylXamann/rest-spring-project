@@ -1,5 +1,5 @@
 package library_rest_spring_boot.library.author;
-import library_rest_spring_boot.library.service.AuthorService;
+import library_rest_spring_boot.library.service.author.AuthorService;
 import library_rest_spring_boot.library.domain.entity.author.Author;
 import library_rest_spring_boot.library.repositories.AuthorRepository;
 import org.junit.jupiter.api.BeforeEach;

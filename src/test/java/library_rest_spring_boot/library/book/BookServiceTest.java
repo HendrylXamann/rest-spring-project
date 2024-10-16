@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
-import library_rest_spring_boot.library.service.BookService;
+import library_rest_spring_boot.library.service.book.BookService;
 import library_rest_spring_boot.library.domain.entity.book.Books;
 import library_rest_spring_boot.library.repositories.BookRepository;
 

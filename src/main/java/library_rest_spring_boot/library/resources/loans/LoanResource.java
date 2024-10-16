@@ -1,7 +1,8 @@
 package library_rest_spring_boot.library.resources.loans;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import library_rest_spring_boot.library.domain.entity.loans.Loans;
-import library_rest_spring_boot.library.service.LoanService;
+import library_rest_spring_boot.library.service.loan.LoanService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -14,13 +15,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Tag(name = "3. Loans", description = "Operations related to loans")
 @RestController
 @RequestMapping("/api/loans")
+@AllArgsConstructor
 public class LoanResource {
 
     private final LoanService loanService;
-
-    public LoanResource(LoanService loanService) {
-        this.loanService = loanService;
-    }
 
     @Operation(summary = "Get all loans")
     @ApiResponse(responseCode = "200", description = "Successful operation")

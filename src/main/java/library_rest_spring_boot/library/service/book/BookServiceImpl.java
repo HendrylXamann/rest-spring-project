@@ -1,31 +1,30 @@
-package library_rest_spring_boot.library.service;
+package library_rest_spring_boot.library.service.book;
+
+import library_rest_spring_boot.library.domain.entity.book.Books;
+import library_rest_spring_boot.library.repositories.BookRepository;
+import library_rest_spring_boot.library.service.author.AuthorService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import library_rest_spring_boot.library.domain.entity.book.Books;
-import library_rest_spring_boot.library.repositories.BookRepository;
-import org.springframework.stereotype.Service;
-
 @Service
-public class BookService {
+@AllArgsConstructor
+public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
     private final AuthorService authorService;
 
-    @Autowired
-    public BookService(BookRepository bookRepository, AuthorService authorService) {
-        this.bookRepository = bookRepository;
-        this.authorService = authorService;
-    }
-
+    @Override
     public List<Books> findAll() {
         return bookRepository.findAll();
     }
 
+    @Override
     public Optional<Books> findById(Long id) {
         return bookRepository.findById(id);
     }
 
+    @Override
     public Books save(Books book) {
         Long authorId = book.getAuthor().getId();
         if (!authorService.existsById(authorId)) {
@@ -34,6 +33,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    @Override
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
