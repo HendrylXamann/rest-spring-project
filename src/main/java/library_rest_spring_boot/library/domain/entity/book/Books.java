@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "books")
@@ -22,21 +23,37 @@ public class Books {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "Title is mandatory")
     private String title;
-
-    @NotBlank(message = "ISBN is mandatory")
     private String isbn;
-
-    @NotNull(message = "Publication date is mandatory")
     private Date publicationDate;
-
-    @NotNull(message = "Number of pages is mandatory")
     private int numberOfPages;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Books books = (Books) o;
+        return numberOfPages == books.numberOfPages && Objects.equals(id, books.id) && Objects.equals(title, books.title) && Objects.equals(isbn, books.isbn) && Objects.equals(publicationDate, books.publicationDate) && Objects.equals(author, books.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, isbn, publicationDate, numberOfPages, author);
+    }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publicationDate=" + publicationDate +
+                ", numberOfPages=" + numberOfPages +
+                ", author=" + author +
+                '}';
+    }
 }

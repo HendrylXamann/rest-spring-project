@@ -1,23 +1,20 @@
 package library_rest_spring_boot.library.service.author;
 import java.util.List;
-import java.util.Optional;
 
-import library_rest_spring_boot.library.domain.entity.author.Author;
-import library_rest_spring_boot.library.repositories.AuthorRepository;
-import org.springframework.stereotype.Service;
+import library_rest_spring_boot.library.domain.entity.author.payload.AuthorDTO;
 
 public interface AuthorService {
 
-    List<Author> findAll();
+    List<AuthorDTO> findAll();
 
-    Optional<Author> findById(Long id);
+    AuthorDTO findById(Long id);
 
-    Author save(Author author);
+    AuthorDTO createAuthor(AuthorDTO author);
 
-    void deleteById(Long id);
+    String deleteById(Long id);
 
     boolean existsById(Long id);
 
-    Author updateAuthor(Author authorDetails);
+    AuthorDTO updateAuthor(Long id, AuthorDTO form);
 
 }

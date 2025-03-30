@@ -1,4 +1,4 @@
-package library_rest_spring_boot.library.exception;
+package library_rest_spring_boot.library.config.exception;
 import java.time.LocalDateTime;
 
 public class ErrorResponse {

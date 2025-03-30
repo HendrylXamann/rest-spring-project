@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Arrays;
 
 import library_rest_spring_boot.library.domain.entity.author.Author;
-import library_rest_spring_boot.library.domain.entity.author.AuthorDTO;
-import library_rest_spring_boot.library.domain.entity.book.BookDTO;
+import library_rest_spring_boot.library.domain.entity.author.payload.AuthorDTO;
+import library_rest_spring_boot.library.domain.entity.book.payload.BookDTO;
 import library_rest_spring_boot.library.service.author.AuthorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;

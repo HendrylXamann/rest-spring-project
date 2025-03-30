@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "authors")
@@ -20,12 +21,32 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Name is mandatory")
     private String name;
-    @NotNull(message = "Birth date is mandatory")
     private Date birthDate;
-    @NotBlank(message = "Nationality is mandatory")
     private String nationality;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(id, author.id) && Objects.equals(name, author.name) && Objects.equals(birthDate, author.birthDate) && Objects.equals(nationality, author.nationality);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, birthDate, nationality);
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", nationality='" + nationality + '\'' +
+                '}';
+    }
 
     public boolean isValid() {
         return name != null;

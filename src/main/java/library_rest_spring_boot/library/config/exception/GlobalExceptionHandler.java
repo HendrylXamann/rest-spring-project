@@ -1,4 +1,4 @@
-package library_rest_spring_boot.library.exception;
+package library_rest_spring_boot.library.config.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

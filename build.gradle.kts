@@ -31,6 +31,9 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("javax.persistence:javax.persistence-api:2.2")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.3")
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
+
 
 }
 

@@ -1,5 +1,4 @@
 # Spring Boot Library Management Project
-
 ## Project Description
 
 This project has two main purposes:
